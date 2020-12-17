@@ -1,0 +1,5 @@
+sleep(200)
+0
+borted
+sleep(5)
+1
