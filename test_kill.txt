@@ -1,0 +1,37 @@
+#!/bin/bash
+#system_load=$(w > /home/saravanan/mysql-base/w2.txt);
+#grep_load=$(awk '{print $10}' /home/saravanan/mysql-base/w2.txt  | cut -f 1 -d ',');
+#grep_load=45.43
+#threshold=0
+#if [ "$grep_load" > "$threshold" ] ; then
+ #  echo "Current load is ${grep_load} || then fire all junks"
+#else 
+ #  echo "Load is normal"
+#fi
+
+get_count=$(/home/saravanan/mysql-base/bin/mysql -uroot -S /tmp/mysql06.sock -s -N -e "select count(*) from information_schema.processlist where COMMAND not in ('Binlog Dump') and user not in ('system user','event_scheduler') and Info like 'select sleep%';");
+#echo $get_count;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
