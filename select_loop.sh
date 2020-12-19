@@ -1,5 +1,5 @@
 #! /bin/bash
-PS3="Enter any :"
+PS3="Enter any DB:"
 dbs=" mysql information_schema performance_schema"
 MYSQL="/mnt/e/back/vicky/mysql_base/bin/mysql"
 USER="root"
@@ -12,22 +12,38 @@ echo "Kindly select on of DB to view the tables in it! "
 select DB in ${mysql_db[*]}
 do
 	case $DB in
-		"mysql")
+		${mysql_db[0]})
 	    		echo -e "You have selected the $DB database !\n";
-			$($MYSQL -u $USER -S $SOCKET -e "show tables from $DB" > mysql_tables.txt); 
+			$($MYSQL -u $USER -S $SOCKET -e "show tables from ${mysql_db[0]}" > mysql_tables.txt); 
 			for table in $(< mysql_tables.txt)
 			do
-				echo "$table"
+				echo $table;
 		  	done
 			$(rm -rf mysql_tables.txt)
 			;;
-		"information_schema")
+		${mysql_db[1]})
 			echo -e "You have selected the $DB database ! \n"
-			echo $($MYSQL -uroot -S $SOCKET -e "show tables from $DB") 
+			info_tables=($($MYSQL -uroot -S $SOCKET -e "show tables from $DB")) 
+			PS3="Enter any of the below table "
+			select table in ${info_tables[*]}
+			do
+				case $table in
+								
+					${info_tables[1]})
+						echo ${info_tables[1]};;
+					*)
+						echo "Error select option 1..3"; break;;
+						
+				esac
+			done
+
+			
+
+			: '
 			for word in $(< info_tables.txt)
 			do
 				    echo "$word"
-			    done
+			    done '
 			;;
 		"performance_schema")
 			echo "You have selected the $DB database!"
