@@ -1,6 +1,5 @@
 #!/bin/bash -x
 
-
 info_tables=(CHARACTER_SETS
 COLLATIONS
 COLLATION_CHARACTER_SET_APPLICABILITY
@@ -61,24 +60,19 @@ INNODB_CMPMEM
 INNODB_BUFFER_POOL_STATS
 INNODB_SYS_COLUMNS
 INNODB_SYS_FOREIGN
-INNODB_SYS_TABLESTATS)
+INNODB_SYS_TABLESTATS
+)
+#info_tables=(tb1 tb2 tb3 tb4 tb5 tb6)
+#echo ${info_tables[*]}
+count_tables=${#info_tables[*]}
+#echo $count_tables;
 
-
-info_tables=(tb1 tb2 tb3 tb4 tb5)
-
-#echo ${info_tables[3]}
-
-#for i in $(eval echo "{1..$n}")
-set -x
-n=${#info_tables[*]}
-echo $n;
-t=0
-for t in $(eval echo "{1..$n}"); do
-	
-	echo $t;	
-	echo ${info_tables[$t]};
-	sleep 1;
+i=0
+while [ $i -lt $count_tables ]
+do
+	#echo $i
+	echo ${info_tables[$i]}
+	(( i++ ))
+	sleep 0.6
 done
-
-
-
+exit
