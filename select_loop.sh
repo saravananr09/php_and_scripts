@@ -5,12 +5,11 @@ MYSQL="/mnt/e/back/vicky/mysql_base/bin/mysql"
 USER="root"
 SOCKET="/tmp/mysql78.sock"
 
-
-
+mysql_db=('mysql' 'information_schema' 'performance_schema')
 
 echo "Kindly select on of DB to view the tables in it! "
 
-select DB in mysql information_schema performance_schema
+select DB in ${mysql_db[*]}
 do
 	case $DB in
 		"mysql")
